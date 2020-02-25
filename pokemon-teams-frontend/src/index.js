@@ -38,8 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(
                 e.target.parentNode.remove()
             )
-        } else {
-            (e.target.className === "add")
+        } else if (e.target.className === "add") {
+            if (e.target.parentNode.children[2].childElementCount >= 6) { alert("Cannot have more than 6 Pokemon!")
+            }else{
                 fetch(`${POKEMONS_URL}`, {
                     method: "POST",
                     headers: {
@@ -53,5 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         e.target.parentElement.children[2].innerHTML += `<li>${pokemon.nickname}(${pokemon.species})
                         <button class="release" id="${pokemon.id}">Release</button></li>`
                     })
+            }
+                
             }
         })
